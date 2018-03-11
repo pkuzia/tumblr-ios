@@ -22,9 +22,32 @@ class WelcomeScreenViewModel: BaseViewModel {
     // MARK: - View Model Data
     
     let logoImageName = "tumblrLogo"
+    
     weak var delegate: WelcomeScreenViewModelDelegate?
+    let tumblrService = TumblrService()
+    
+    var userPostsResponse: UserPostsResponse?
     
     // MARK: - Functions
+    
+    func userPosts(name: String, completionHandler: @escaping (FetchResult) -> ()) {
+        let userPostsRequest = UserPostsRequest(name: name)
+        
+        tumblrService.userPosts(userPostsRequest: userPostsRequest) { result, userPostsResponse in
+            DispatchQueue.main.async {
+                if result.error != nil {
+                    completionHandler(result)
+                } else {
+                    if let userPostsResponse = userPostsResponse {
+                        self.userPostsResponse = userPostsResponse
+                        completionHandler(FetchResult(error: nil))
+                    } else {
+                        completionHandler(FetchResult(error: .unknownError))
+                    }
+                }
+            }
+        }
+    }
 }
 
 

@@ -14,8 +14,9 @@ public class UserPostsRequest: BaseRequest {
         self.name = name
     }
 
-    public func getParameters() -> [String: Any]? {
+    public func getParameters() -> [String: Any] {
         var parameters: [String: Any] = [:]
+        parameters["debug"] = 1
         return parameters
     }
 }

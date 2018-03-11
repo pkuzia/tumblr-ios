@@ -39,32 +39,32 @@ public enum TumblrRestClient {
 
 extension TumblrRestClient: TargetType {
     
-    public var baseURL: URL { return URL(string: "http://")! }
+    public var baseURL: URL {
+        switch self {
+        case .userPostsRequest(let userPostsRequest):
+            return URL(string: "http://\(userPostsRequest.name).tumblr.com")!
+        }
+    }
     
     public var path: String {
         switch self {
-        case .userPostsRequest(let userPostsRequest):
-            return "\(userPostsRequest.name).tumblr.com/api/read/json"
+        case .userPostsRequest:
+            return "api/read/json"
         }
     }
     
     public var method: Moya.Method {
-        return .post
-    }
-    
-    public var parameters: [String: Any]? {
         switch self {
-        case .userPostsRequest(let userPostsRequest):
-            return userPostsRequest.getParameters()
+        case .userPostsRequest:
+            return .get
         }
     }
     
-    public var parameterEncoding: ParameterEncoding {
-        return URLEncoding.queryString
-    }
-    
     public var task: Task {
-        return .requestPlain
+        switch self {
+        case .userPostsRequest(let userPostsRequest):
+            return .requestParameters(parameters: userPostsRequest.getParameters(), encoding: URLEncoding.default)
+        }
     }
     
     public var validate: Bool {

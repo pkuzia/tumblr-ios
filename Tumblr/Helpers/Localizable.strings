@@ -9,5 +9,5 @@
 
 /* Welcome Screen */
 
-"welcome_search_button_title" = "Search user";
+"welcome_search_button_title" = "Search User";
 "welcome_textfield_placeholder" = "Enter user name";

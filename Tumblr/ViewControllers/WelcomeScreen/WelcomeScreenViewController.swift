@@ -88,9 +88,16 @@ class WelcomeScreenViewController: BaseViewController {
         searchButton.setAttributedTitle(StyleKit.attributedText(text: welcomeScreenViewModel.searchButtonTitle,
                                                                 attribute: .welcomeSearchButtonTitle), for: .normal)
         searchButton.layer.cornerRadius = 5
+        searchButton.addTarget(self, action: #selector(searchUserButtonClick), for: .touchUpInside)
     }
     
     // MARK: - User Interaction
+    
+    @objc func searchUserButtonClick(sender: UIButton!) {
+        welcomeScreenViewModel.userPosts(name: "przemex3000") { _ in
+            
+        }
+    }
     
     // MARK: - Additional Helpers
     

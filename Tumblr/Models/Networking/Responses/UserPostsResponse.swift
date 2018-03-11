@@ -11,11 +11,32 @@ import ObjectMapper
 
 class UserPostsResponse: BaseResponse {
     
-    var lat: Double?
-    var lng: Double?
+    var name: String?
+    var posts: [Post]?
     
     override public func mapping(map: Map) {
-        lat <- map["results.0.geometry.location.lat"]
-        lng <- map["results.0.geometry.location.lng"]
+        name <- map["tumblelog.name"]
+        posts <- map["posts"]
+    }
+}
+
+class Post: BaseResponse {
+ 
+    var type: String? //TODO: ENUM
+    var url: String?
+    var date: String?
+    var avatar: String?
+    var title: String?
+    var body: String?
+    var tags: [String]?
+    
+    override public func mapping(map: Map) {
+        type <- map["type"]
+        url <- map["url"]
+        date <- map["date"]
+        avatar <- map["tumblelog.avatar_url_128"]
+        title <- map["regular-title"]
+        body <- map["regular-body"]
+        tags <- map["tags"]
     }
 }
