@@ -1,17 +1,15 @@
 //
-//  BaseViewModel.swift
+//  BaseRequest.swift
 //  Tumblr
 //
 //  Created by Przemysław Kuzia on 10.03.2018.
 //  Copyright © 2018 pkuzia. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-class BaseViewModel {
-
-    // MARK: - View Model Data
+public class BaseRequest {
     
-    // MARK: - Functions
-    
+    let bodyName = "body"
+    let queryName = "query"
 }
