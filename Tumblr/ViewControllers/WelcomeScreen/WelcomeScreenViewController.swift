@@ -45,7 +45,7 @@ class WelcomeScreenViewController: BaseViewController {
         initLogo()
         initSearchButton()
         initTextField()
-        view.backgroundColor = StyleKit.colorType(color: .welcomeNavyBlueBackground)
+        view.backgroundColor = StyleKit.colorType(color: .navyBlueBackground)
     }
     
     fileprivate func initLogo() {
@@ -94,14 +94,16 @@ class WelcomeScreenViewController: BaseViewController {
     }
     
     fileprivate func goToBlogScreen() {
-    
+        let blogScreenViewController = BlogScreenViewController()
+        blogScreenViewController.blogScreenViewModel.userPostsResponse = welcomeScreenViewModel.userPostsResponse
+        navigationController?.pushViewController(blogScreenViewController)
     }
     
     // MARK: - User Interaction
     
     @objc func searchUserButtonClick(sender: UIButton!) {
         welcomeScreenViewModel.userPosts(name: "przemex3000") { _ in
-            
+            self.goToBlogScreen()
         }
     }
     

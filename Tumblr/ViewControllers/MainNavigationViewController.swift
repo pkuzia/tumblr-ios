@@ -15,17 +15,9 @@ class MainNavigationViewController: UINavigationController {
         initUI()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        setRootViewController()
-    }
-    
     fileprivate func initUI() {
         self.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationBar.shadowImage = UIImage()
         self.navigationBar.isTranslucent = true
-    }
-    
-    fileprivate func setRootViewController() {
-        present(WelcomeScreenViewController(), animated: false, completion: nil)
     }
 }

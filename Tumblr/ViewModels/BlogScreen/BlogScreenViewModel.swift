@@ -18,6 +18,10 @@ class BlogScreenViewModel: BaseViewModel {
     
     // MARK: - View Model Data
     
+    let textBlogCellIdentifier = "textCell"
+    let photoBlogCellIdentifier = "photoCell"
+    
+    var userPostsResponse: UserPostsResponse?
     weak var delegate: BlogScreenViewModelDelegate?
     
     // MARK: - Functions

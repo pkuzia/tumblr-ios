@@ -10,11 +10,11 @@ import Foundation
 import SwifterSwift
 
 public enum Attribute {
-    case welcomeSearchButtonTitle, welcomeTextFieldPlaceholder, welcomeTextFieldTyping
+    case welcomeSearchButtonTitle, welcomeTextFieldPlaceholder, welcomeTextFieldTyping, blogCellAuthorName, blogTextCellContent
 }
 
 public enum Color {
-    case welcomeNavyBlueBackground, welcomeSearchButtonColor, welcomeTextFieldBackground, welcomeTextFieldPlaceholder
+    case navyBlueBackground, welcomeSearchButtonColor, welcomeTextFieldBackground, welcomeTextFieldPlaceholder, blogCellHeader
 }
 
 
@@ -32,6 +32,12 @@ class StyleKit {
         case .welcomeTextFieldTyping:
             attributedDictionary = attributedText(color: UIColor.white,
                                                   font: UIFont.systemFont(ofSize: 19, weight: UIFont.Weight.light), alignment: .center)
+        case .blogCellAuthorName:
+            attributedDictionary = attributedText(color: UIColor.darkGray,
+                                                  font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.light))
+        case .blogTextCellContent:
+            attributedDictionary = attributedText(color: UIColor.darkGray,
+                                                  font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.light))
         }
         return attributedDictionary
     }
@@ -42,7 +48,7 @@ class StyleKit {
     
     static func colorType(color: Color) -> UIColor {
         switch color {
-        case .welcomeNavyBlueBackground:
+        case .navyBlueBackground:
             return UIColor(hexString: "244461")!
         case .welcomeSearchButtonColor:
             return UIColor(hexString: "51B6D1")!
@@ -50,6 +56,8 @@ class StyleKit {
             return UIColor(hexString: "59768D", transparency: 0.3)!
         case .welcomeTextFieldPlaceholder:
             return UIColor(hexString: "FFFFFF", transparency: 0.2)!
+        case .blogCellHeader:
+            return UIColor(hexString: "DDDDDD")!
         }
     }
     
