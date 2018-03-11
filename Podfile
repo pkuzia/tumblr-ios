@@ -11,9 +11,10 @@ pod 'SnapKit', '~> 4.0.0'
 
 # # DB & Networking
 pod 'Moya-ObjectMapper'
-pod 'Moya', '~> 8.0'
-pod 'ObjectMapper', '~> 2.2'
+pod 'Moya'
+pod 'ObjectMapper'
 pod 'SwiftSpinner'
+pod 'IQKeyboardManagerSwift', '5.0.0'
 
 post_install do |installer|
 	swift40Targets = ['SwifterSwift']
