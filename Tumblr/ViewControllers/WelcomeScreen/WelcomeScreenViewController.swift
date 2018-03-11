@@ -73,6 +73,8 @@ class WelcomeScreenViewController: BaseViewController {
         textField.layer.cornerRadius = 5
         textField.attributedPlaceholder = StyleKit.attributedText(text: welcomeScreenViewModel.textFieldPlaceholder,
                                                                   attribute: .welcomeTextFieldPlaceholder)
+        textField.defaultTextAttributes = StyleKit.convertToTypingAttributes(attribute: .welcomeTextFieldTyping)
+        textField.textAlignment = .center
     }
     
     fileprivate func initSearchButton() {
@@ -89,6 +91,10 @@ class WelcomeScreenViewController: BaseViewController {
                                                                 attribute: .welcomeSearchButtonTitle), for: .normal)
         searchButton.layer.cornerRadius = 5
         searchButton.addTarget(self, action: #selector(searchUserButtonClick), for: .touchUpInside)
+    }
+    
+    fileprivate func goToBlogScreen() {
+    
     }
     
     // MARK: - User Interaction

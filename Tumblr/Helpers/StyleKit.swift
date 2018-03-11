@@ -10,7 +10,7 @@ import Foundation
 import SwifterSwift
 
 public enum Attribute {
-    case welcomeSearchButtonTitle, welcomeTextFieldPlaceholder
+    case welcomeSearchButtonTitle, welcomeTextFieldPlaceholder, welcomeTextFieldTyping
 }
 
 public enum Color {
@@ -25,10 +25,13 @@ class StyleKit {
         switch attribute {
         case .welcomeSearchButtonTitle:
             attributedDictionary = attributedText(color: UIColor.white,
-                                                   font: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.light))
+                                                   font: UIFont.systemFont(ofSize: 19, weight: UIFont.Weight.light))
         case .welcomeTextFieldPlaceholder:
             attributedDictionary = attributedText(color: colorType(color: .welcomeTextFieldPlaceholder),
-                                                  font: UIFont.systemFont(ofSize: 18, weight: UIFont.Weight.light), alignment: .center)
+                                                  font: UIFont.systemFont(ofSize: 19, weight: UIFont.Weight.light), alignment: .center)
+        case .welcomeTextFieldTyping:
+            attributedDictionary = attributedText(color: UIColor.white,
+                                                  font: UIFont.systemFont(ofSize: 19, weight: UIFont.Weight.light), alignment: .center)
         }
         return attributedDictionary
     }
@@ -48,6 +51,15 @@ class StyleKit {
         case .welcomeTextFieldPlaceholder:
             return UIColor(hexString: "FFFFFF", transparency: 0.2)!
         }
+    }
+    
+    static func convertToTypingAttributes(attribute: Attribute) -> [String: Any] {
+        let attr = attributedText(attribute: attribute)
+        var result = [String: Any]()
+        for (k,v) in attr {
+            result[k.rawValue] = v
+        }
+        return result
     }
     
     static func attributedText(color: UIColor, font: UIFont, alignment: NSTextAlignment = .left) -> [NSAttributedStringKey: Any] {

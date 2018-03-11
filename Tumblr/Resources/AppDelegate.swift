@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         if let window = window {
-            window.rootViewController = WelcomeScreenViewController()
+            window.rootViewController = MainNavigationViewController(rootViewController: WelcomeScreenViewController())
             window.makeKeyAndVisible()
         }
         IQKeyboardManager.sharedManager().enable = true
