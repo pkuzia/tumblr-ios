@@ -20,6 +20,7 @@ class BlogItemHeader: UIView {
     // MARK: - Appearance
     
     func initBlogItemHeaderView(_ post: Post) {
+        backgroundColor = StyleKit.colorType(color: .blogCellHeader)
         initAuthorAvatar(post)
         initAuthorName(post)
         initPostDate(post)

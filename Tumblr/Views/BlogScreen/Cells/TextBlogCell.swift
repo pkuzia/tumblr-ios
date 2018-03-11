@@ -16,8 +16,7 @@ class TextBlogCell: BaseBlogCell {
     lazy var postView = UIView()
     lazy var blogItemHeader = BlogItemHeader()
     lazy var blogTextContent = UILabel()
-    lazy var separatorView = UIView()
-    lazy var tagListLabel = UILabel()
+    lazy var blogItemFooter = BlogItemFooter()
     
     // MARK: - View Lifecycle
     
@@ -40,8 +39,7 @@ class TextBlogCell: BaseBlogCell {
     fileprivate func initPostView(_ post: Post) {
         initBlogItemHeaderView(post)
         initBlogTextContent(post)
-        initSeparatorView()
-        initTagListLabel(post)
+        initBlogItemFooterView(post)
         
         addSubview(postView)
         postView.snp.makeConstraints { make in
@@ -62,11 +60,7 @@ class TextBlogCell: BaseBlogCell {
             make.right.equalTo(postView.snp.right)
             make.height.equalTo(60)
         }
-        
-        blogItemHeader.backgroundColor = StyleKit.colorType(color: .blogCellHeader)
     }
-    
-    
     
     fileprivate func initBlogTextContent(_ post: Post) {
         postView.addSubview(blogTextContent)
@@ -82,28 +76,15 @@ class TextBlogCell: BaseBlogCell {
         blogTextContent.numberOfLines = 0
     }
     
-    fileprivate func initSeparatorView() {
-        postView.addSubview(separatorView)
-        separatorView.snp.makeConstraints { make in
-            make.top.equalTo(blogTextContent.snp.bottom).offset(0)
-            make.left.equalTo(postView.snp.left).offset(20)
-            make.right.equalTo(postView.snp.right).offset(0)
-            make.height.equalTo(1)
+    fileprivate func initBlogItemFooterView(_ post: Post) {
+        blogItemFooter.initBlogItemFooterView(post)
+        postView.addSubview(blogItemFooter)
+        blogItemFooter.snp.makeConstraints { make in
+            make.top.equalTo(blogTextContent.snp.bottom)
+            make.left.equalTo(postView.snp.left)
+            make.right.equalTo(postView.snp.right)
+            make.bottom.equalTo(postView.snp.bottom)
+            make.height.equalTo(60)
         }
-        
-        separatorView.backgroundColor = StyleKit.colorType(color: .blogCellHeader)
-    }
-    
-    fileprivate func initTagListLabel(_ post: Post) {
-        postView.addSubview(tagListLabel)
-        tagListLabel.snp.makeConstraints { make in
-            make.top.equalTo(separatorView.snp.bottom).offset(10)
-            make.left.equalTo(postView.snp.left).offset(20)
-            make.width.equalTo(postView.snp.width).multipliedBy(0.7)
-            make.height.equalTo(40)
-            make.bottom.equalTo(postView.snp.bottom).offset(-10)
-        }
-        
-        tagListLabel.attributedText = StyleKit.attributedText(text: createTagsListLabel(post), attribute: .blogCellTags)
     }
 }

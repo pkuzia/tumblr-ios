@@ -31,6 +31,7 @@
 		97A1D9072055946100DF7611 /* BaseBlogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A1D9062055946100DF7611 /* BaseBlogCell.swift */; };
 		97A1D90A20559D0200DF7611 /* BlogItemHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A1D90920559D0200DF7611 /* BlogItemHeader.swift */; };
 		97A1D90B20559EAC00DF7611 /* TextBlogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A1D8FD20556D9400DF7611 /* TextBlogCell.swift */; };
+		97A1D90D2055A06800DF7611 /* BlogItemFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A1D90C2055A06800DF7611 /* BlogItemFooter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		97A1D9042055873900DF7611 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		97A1D9062055946100DF7611 /* BaseBlogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBlogCell.swift; sourceTree = "<group>"; };
 		97A1D90920559D0200DF7611 /* BlogItemHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogItemHeader.swift; sourceTree = "<group>"; };
+		97A1D90C2055A06800DF7611 /* BlogItemFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogItemFooter.swift; sourceTree = "<group>"; };
 		DD7C83F852D4351B57151C51 /* Pods_Tumblr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tumblr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2632809C6D43CAA232D8ABC /* Pods-Tumblr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tumblr.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tumblr/Pods-Tumblr.release.xcconfig"; sourceTree = "<group>"; };
 		EFBF09F7340F1CDC8199FAC8 /* Pods-Tumblr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tumblr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tumblr/Pods-Tumblr.debug.xcconfig"; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 			children = (
 				97A1D90820559CDD00DF7611 /* Cells */,
 				97A1D90920559D0200DF7611 /* BlogItemHeader.swift */,
+				97A1D90C2055A06800DF7611 /* BlogItemFooter.swift */,
 			);
 			path = BlogScreen;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				97A1D8D02054817100DF7611 /* BaseViewModel.swift in Sources */,
 				97A1D8D42054863F00DF7611 /* StyleKit.swift in Sources */,
 				97A1D8F72055485300DF7611 /* MainNavigationViewController.swift in Sources */,
+				97A1D90D2055A06800DF7611 /* BlogItemFooter.swift in Sources */,
 				97A1D9052055873900DF7611 /* UILabel.swift in Sources */,
 				97A1D90B20559EAC00DF7611 /* TextBlogCell.swift in Sources */,
 				97A1D8E92055295900DF7611 /* UserPostsRequest.swift in Sources */,

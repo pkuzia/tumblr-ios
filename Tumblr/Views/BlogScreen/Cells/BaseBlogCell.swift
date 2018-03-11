@@ -21,15 +21,5 @@ class BaseBlogCell: UITableViewCell {
     }
     
      // MARK: - Helper functions
-    
-    func createTagsListLabel(_ post: Post) -> String {
-        var tagString = ""
-        if let tags = post.tags {
-            tags.forEach({ tag in
-                tagString.append(" #\(tag)")
-            })
-        }
-        return tagString
-    }
 
 }
