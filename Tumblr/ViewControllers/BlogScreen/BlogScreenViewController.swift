@@ -50,6 +50,7 @@ class BlogScreenViewController: BaseViewController {
             make.edges.equalTo(self.view).inset(UIEdgeInsetsMake(64, 0, 0, 0))
         }
         
+        tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.clear
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 300.0
@@ -96,6 +97,7 @@ extension BlogScreenViewController: UITableViewDelegate, UITableViewDataSource {
             }
         case .photo:
             if let cell = tableView.dequeueReusableCell(withIdentifier: blogScreenViewModel.photoBlogCellIdentifier, for: indexPath) as? PhotoBlogCell {
+                cell.initCell(post: post)
                 return cell
             }
         }

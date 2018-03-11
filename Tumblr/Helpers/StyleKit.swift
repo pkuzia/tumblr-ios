@@ -11,7 +11,7 @@ import SwifterSwift
 
 public enum Attribute {
     case welcomeSearchButtonTitle, welcomeTextFieldPlaceholder, welcomeTextFieldTyping, blogCellAuthorName, blogTextCellContent,
-    blogCellTags, blogCellDate
+    blogCellTags, blogCellDate, blogPhotoTitle
 }
 
 public enum Color {
@@ -49,6 +49,9 @@ class StyleKit {
         case .blogCellDate:
             attributedDictionary = attributedText(color: UIColor.darkGray,
                                                   font: UIFont.systemFont(ofSize: 11, weight: UIFont.Weight.light), alignment: .right)
+        case .blogPhotoTitle:
+            attributedDictionary = attributedText(color: UIColor.darkGray,
+                                                  font: UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.light))
         }
         return attributedDictionary
     }

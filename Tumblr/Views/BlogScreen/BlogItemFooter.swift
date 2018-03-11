@@ -16,12 +16,15 @@ class BlogItemFooter: UIView {
     lazy var tagListLabel = UILabel()
     lazy var webButton = UIButton()
 
+    var post: Post?
+    
     // MARK: - Appearance
     
-    func initBlogItemFooterView(_ post: Post) {
+    func initBlogItemFooterView(_ post: Post?) {
+        self.post = post
         initSeparatorView()
-        initTagListLabel(post)
-        initWebButton(post)
+        initTagListLabel()
+        initWebButton()
     }
     
     fileprivate func initSeparatorView() {
@@ -36,7 +39,7 @@ class BlogItemFooter: UIView {
         separatorView.backgroundColor = StyleKit.colorType(color: .blogCellHeader)
     }
     
-    fileprivate func initTagListLabel(_ post: Post) {
+    fileprivate func initTagListLabel() {
         addSubview(tagListLabel)
         tagListLabel.snp.makeConstraints { make in
             make.top.equalTo(separatorView.snp.bottom).offset(10)
@@ -45,10 +48,10 @@ class BlogItemFooter: UIView {
             make.bottom.equalTo(self.snp.bottom).offset(-10)
         }
         
-        tagListLabel.attributedText = StyleKit.attributedText(text: createTagsListLabel(post), attribute: .blogCellTags)
+        tagListLabel.attributedText = StyleKit.attributedText(text: createTagsListLabel(), attribute: .blogCellTags)
     }
     
-    fileprivate func initWebButton(_ post: Post) {
+    fileprivate func initWebButton() {
         addSubview(webButton)
         webButton.snp.makeConstraints { make in
             make.centerY.equalTo(tagListLabel.snp.centerY)
@@ -61,9 +64,9 @@ class BlogItemFooter: UIView {
         }
     }
         
-    func createTagsListLabel(_ post: Post) -> String {
+    func createTagsListLabel() -> String {
         var tagString = ""
-        if let tags = post.tags {
+        if let tags = post?.tags {
             tags.forEach({ tag in
                 tagString.append(" #\(tag)")
             })

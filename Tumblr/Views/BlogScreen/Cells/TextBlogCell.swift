@@ -18,6 +18,8 @@ class TextBlogCell: BaseBlogCell {
     lazy var blogTextContent = UILabel()
     lazy var blogItemFooter = BlogItemFooter()
     
+    var post: Post?
+    
     // MARK: - View Lifecycle
     
     override func awakeFromNib() {
@@ -33,13 +35,14 @@ class TextBlogCell: BaseBlogCell {
     func initCell(post: Post) {
         backgroundColor = UIColor.clear
         selectionStyle = .none
-        initPostView(post)
+        self.post = post
+        initPostView()
     }
     
-    fileprivate func initPostView(_ post: Post) {
-        initBlogItemHeaderView(post)
-        initBlogTextContent(post)
-        initBlogItemFooterView(post)
+    fileprivate func initPostView() {
+        initBlogItemHeaderView()
+        initBlogTextContent()
+        initBlogItemFooterView()
         
         addSubview(postView)
         postView.snp.makeConstraints { make in
@@ -51,7 +54,7 @@ class TextBlogCell: BaseBlogCell {
         postView.clipsToBounds = true
     }
     
-    fileprivate func initBlogItemHeaderView(_ post: Post) {
+    fileprivate func initBlogItemHeaderView() {
         blogItemHeader.initBlogItemHeaderView(post)
         postView.addSubview(blogItemHeader)
         blogItemHeader.snp.makeConstraints { make in
@@ -62,7 +65,7 @@ class TextBlogCell: BaseBlogCell {
         }
     }
     
-    fileprivate func initBlogTextContent(_ post: Post) {
+    fileprivate func initBlogTextContent() {
         postView.addSubview(blogTextContent)
         blogTextContent.snp.makeConstraints { make in
             make.top.equalTo(blogItemHeader.snp.bottom).offset(20)
@@ -70,13 +73,13 @@ class TextBlogCell: BaseBlogCell {
             make.right.equalTo(postView.snp.right).offset(-20)
         }
         
-        if let postContent = post.body {
+        if let postContent = post?.body {
             blogTextContent.setHTMLFromString(text: postContent)
         }
         blogTextContent.numberOfLines = 0
     }
     
-    fileprivate func initBlogItemFooterView(_ post: Post) {
+    fileprivate func initBlogItemFooterView() {
         blogItemFooter.initBlogItemFooterView(post)
         postView.addSubview(blogItemFooter)
         blogItemFooter.snp.makeConstraints { make in
