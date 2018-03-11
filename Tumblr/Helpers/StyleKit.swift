@@ -10,13 +10,18 @@ import Foundation
 import SwifterSwift
 
 public enum Attribute {
-    case welcomeSearchButtonTitle, welcomeTextFieldPlaceholder, welcomeTextFieldTyping, blogCellAuthorName, blogTextCellContent
+    case welcomeSearchButtonTitle, welcomeTextFieldPlaceholder, welcomeTextFieldTyping, blogCellAuthorName, blogTextCellContent,
+    blogCellTags, blogCellDate
 }
 
 public enum Color {
-    case navyBlueBackground, welcomeSearchButtonColor, welcomeTextFieldBackground, welcomeTextFieldPlaceholder, blogCellHeader
+    case navyBlueBackground, welcomeSearchButtonColor, welcomeTextFieldBackground, welcomeTextFieldPlaceholder, blogCellHeader,
+    blogCellTags
 }
 
+public enum ApplicationFont {
+    case tagsViewFont
+}
 
 class StyleKit {
 
@@ -38,6 +43,12 @@ class StyleKit {
         case .blogTextCellContent:
             attributedDictionary = attributedText(color: UIColor.darkGray,
                                                   font: UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.light))
+        case .blogCellTags:
+            attributedDictionary = attributedText(color: UIColor.darkGray,
+                                                  font: UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.light))
+        case .blogCellDate:
+            attributedDictionary = attributedText(color: UIColor.darkGray,
+                                                  font: UIFont.systemFont(ofSize: 11, weight: UIFont.Weight.light), alignment: .right)
         }
         return attributedDictionary
     }
@@ -58,6 +69,15 @@ class StyleKit {
             return UIColor(hexString: "FFFFFF", transparency: 0.2)!
         case .blogCellHeader:
             return UIColor(hexString: "DDDDDD")!
+        case .blogCellTags:
+            return UIColor.lightGray
+        }
+    }
+    
+    static func applicationFont(fontType: ApplicationFont) -> UIFont {
+        switch fontType {
+        case .tagsViewFont:
+            return UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.light)
         }
     }
     

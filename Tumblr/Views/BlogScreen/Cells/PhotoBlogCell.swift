@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoBlogCell: UITableViewCell {
+class PhotoBlogCell: BaseBlogCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
