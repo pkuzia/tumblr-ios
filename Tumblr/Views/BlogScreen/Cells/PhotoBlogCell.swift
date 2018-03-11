@@ -84,14 +84,15 @@ class PhotoBlogCell: BaseBlogCell {
         postView.addSubview(blogPhoto)
         blogPhoto.snp.makeConstraints { make in
             make.top.equalTo(photoTitle.snp.bottom)
-            make.left.equalTo(postView.snp.left).offset(-10)
-            make.right.equalTo(postView.snp.right).offset(10)
+            make.left.equalTo(postView.snp.left)
+            make.right.equalTo(postView.snp.right)
             make.height.equalTo(200)
         }
         blogPhoto.contentMode = .scaleAspectFill
         if let photoUrl = post?.photoURL, let url = URL(string: photoUrl) {
             blogPhoto.kf.indicatorType = .activity
             blogPhoto.kf.setImage(with: url)
+            blogPhoto.clipsToBounds = true
         }
     }
     
@@ -99,7 +100,7 @@ class PhotoBlogCell: BaseBlogCell {
         blogItemFooter.initBlogItemFooterView(post)
         postView.addSubview(blogItemFooter)
         blogItemFooter.snp.makeConstraints { make in
-            make.top.equalTo(blogPhoto.snp.bottom)
+            make.top.equalTo(blogPhoto.snp.bottom).offset(10)
             make.left.equalTo(postView.snp.left)
             make.right.equalTo(postView.snp.right)
             make.bottom.equalTo(postView.snp.bottom)
