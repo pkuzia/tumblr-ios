@@ -9,6 +9,7 @@ pod 'SnapKit', '~> 4.0.0'
 pod 'IQKeyboardManagerSwift', '5.0.0'
 pod 'Kingfisher', '~> 4.0'
 pod 'SwiftSpinner'
+pod 'SCLAlertView'
 
 # # DB & Networking
 pod 'Moya-ObjectMapper'

@@ -20,6 +20,10 @@ class WelcomeScreenViewModel: BaseViewModel {
     let textFieldPlaceholder = "welcome_textfield_placeholder".localized()
     let searchSpinnerText = "welcome_search_text".localized()
     
+    let errorTitle = "welcome_error_title".localized()
+    let connectionErrorMsg = "welcome_connection_error".localized()
+    let userNotFoundErrorMsg = "welcome_not_found_error".localized()
+    
     // MARK: - View Model Data
     
     let logoImageName = "tumblrLogo"

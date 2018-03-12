@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import SwifterSwift
 import SwiftSpinner
+import SCLAlertView
 
 class WelcomeScreenViewController: BaseViewController {
     
@@ -111,13 +112,20 @@ class WelcomeScreenViewController: BaseViewController {
                 if result.error == nil {
                     self.goToBlogScreen()
                 }
-                self.handleApiError()
+                self.handleApiError(error: result.error)
             }
         }
     }
     
-    func handleApiError() {
-        
+    func handleApiError(error: FetchError?) {
+        if let error = error {
+            switch error {
+            case .userNotFound:
+                SCLAlertView().showInfo(welcomeScreenViewModel.errorTitle, subTitle: welcomeScreenViewModel.userNotFoundErrorMsg)
+            default:
+                SCLAlertView().showInfo(welcomeScreenViewModel.errorTitle, subTitle: welcomeScreenViewModel.connectionErrorMsg)
+            }
+        }
     }
     
     // MARK: - Additional Helpers
@@ -129,4 +137,3 @@ class WelcomeScreenViewController: BaseViewController {
 extension WelcomeScreenViewController: WelcomeScreenViewModelDelegate {
     
 }
-

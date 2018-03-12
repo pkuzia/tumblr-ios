@@ -17,6 +17,7 @@ public struct FetchResult {
 
 enum FetchError: Swift.Error {
     case connectionError
+    case userNotFound
     case parseError
     case unknownError
     case errorMessage(String)
@@ -31,14 +32,16 @@ enum FetchError: Swift.Error {
             return "There was an parsing error"
         case .unknownError:
             return "There was an unknown error"
+        case .userNotFound:
+            return "User not found"
         }
     }
 }
 
 class BaseService {
-
+    
     func handleMoyaResultWithMappingObject<T: BaseResponse>(result: Result<Moya.Response, MoyaError>,
-                                                                 completionHandler: @escaping (FetchResult, T?) -> ()) {
+                                                            completionHandler: @escaping (FetchResult, T?) -> ()) {
         switch result {
         case let .success(response):
             do {
@@ -53,7 +56,7 @@ class BaseService {
             } catch let error as MoyaError {
                 switch error {
                 case .statusCode(_): do {
-                        completionHandler(FetchResult(error: .connectionError), nil)
+                    completionHandler(FetchResult(error: .connectionError), nil)
                     }
                 case .jsonMapping(_): do {
                     completionHandler(FetchResult(error: .parseError), nil)
@@ -66,10 +69,16 @@ class BaseService {
                 completionHandler(FetchResult(error: .unknownError), nil)
             }
         case let .failure(error):
-            guard let error = error.errorDescription else {
-                break
+            guard let errorDescription = error.errorDescription, let statusCode = error.response?.statusCode else {
+                completionHandler(FetchResult(error: .unknownError), nil)
+                return
             }
-            completionHandler(FetchResult(error: .errorMessage(error.description)), nil)
+            switch statusCode {
+            case 404:
+                completionHandler(FetchResult(error: .userNotFound), nil)
+            default:
+                completionHandler(FetchResult(error: .errorMessage(errorDescription)), nil)
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   Tumblr
 
@@ -12,6 +12,10 @@
 "welcome_search_button_title" = "Search User";
 "welcome_textfield_placeholder" = "Enter user name";
 "welcome_search_text" = "Searching user...";
+
+"welcome_error_title" = "Error";
+"welcome_connection_error" = "Connection error";
+"welcome_not_found_error" = "User not found";
 
 /* Blog Screen */
 
