@@ -11,12 +11,12 @@ import SwifterSwift
 
 public enum Attribute {
     case welcomeSearchButtonTitle, welcomeTextFieldPlaceholder, welcomeTextFieldTyping, blogCellAuthorName, blogTextCellContent,
-    blogCellTags, blogCellDate, blogPhotoTitle
+    blogCellTags, blogCellDate, blogPhotoTitle, navBarTitle
 }
 
 public enum Color {
     case navyBlueBackground, welcomeSearchButtonColor, welcomeTextFieldBackground, welcomeTextFieldPlaceholder, blogCellHeader,
-    blogCellTags
+    blogCellTags, navBarTintColor
 }
 
 public enum ApplicationFont {
@@ -52,6 +52,9 @@ class StyleKit {
         case .blogPhotoTitle:
             attributedDictionary = attributedText(color: UIColor.darkGray,
                                                   font: UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.light))
+        case .navBarTitle:
+            attributedDictionary = attributedText(color: UIColor.white,
+                                                  font: UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.regular))
         }
         return attributedDictionary
     }
@@ -74,6 +77,8 @@ class StyleKit {
             return UIColor(hexString: "DDDDDD")!
         case .blogCellTags:
             return UIColor.lightGray
+        case .navBarTintColor:
+            return UIColor.white
         }
     }
     

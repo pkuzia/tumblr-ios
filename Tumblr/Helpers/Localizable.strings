@@ -11,3 +11,8 @@
 
 "welcome_search_button_title" = "Search User";
 "welcome_textfield_placeholder" = "Enter user name";
+"welcome_search_text" = "Searching user...";
+
+/* Blog Screen */
+
+"blog_screen_title" = "Tumblr";

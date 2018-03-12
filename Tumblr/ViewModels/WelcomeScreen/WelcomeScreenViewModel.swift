@@ -18,6 +18,7 @@ class WelcomeScreenViewModel: BaseViewModel {
     
     let searchButtonTitle = "welcome_search_button_title".localized()
     let textFieldPlaceholder = "welcome_textfield_placeholder".localized()
+    let searchSpinnerText = "welcome_search_text".localized()
     
     // MARK: - View Model Data
     

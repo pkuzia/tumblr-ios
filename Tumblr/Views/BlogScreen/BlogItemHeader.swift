@@ -39,8 +39,6 @@ class BlogItemHeader: UIView {
         }
         
         if let avatarUrl = post?.avatar, let url = URL(string: avatarUrl) {
-            authorAvatar.layer.masksToBounds = true
-            authorAvatar.layer.cornerRadius = authorAvatar.frame.height / 2
             authorAvatar.kf.setImage(with: url)
         }
     }

@@ -16,6 +16,8 @@ class BlogScreenViewModel: BaseViewModel {
     
     // MARK: - Strings
     
+    let screenTitle = "blog_screen_title".localized()
+    
     // MARK: - View Model Data
     
     let textBlogCellIdentifier = "textCell"

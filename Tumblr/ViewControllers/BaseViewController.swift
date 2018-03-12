@@ -32,10 +32,6 @@ class BaseViewController: UIViewController {
     
     // MARK: - Appearance
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     // MARK: - Functions
     
 }

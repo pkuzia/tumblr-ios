@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import SwifterSwift
+import SwiftSpinner
 
 class WelcomeScreenViewController: BaseViewController {
     
@@ -16,7 +17,7 @@ class WelcomeScreenViewController: BaseViewController {
     
     lazy var logo = UIImageView()
     lazy var searchButton = UIButton()
-    lazy var textField = UITextField()
+    lazy var nameTextField = UITextField()
     
     let welcomeScreenViewModel = WelcomeScreenViewModel()
     
@@ -46,6 +47,7 @@ class WelcomeScreenViewController: BaseViewController {
         initSearchButton()
         initTextField()
         view.backgroundColor = StyleKit.colorType(color: .navyBlueBackground)
+        navigationItem.backBarButtonItem = UIBarButtonItem()
     }
     
     fileprivate func initLogo() {
@@ -61,20 +63,20 @@ class WelcomeScreenViewController: BaseViewController {
     }
     
     fileprivate func initTextField() {
-        view.addSubview(textField)
-        textField.snp.makeConstraints { make in
+        view.addSubview(nameTextField)
+        nameTextField.snp.makeConstraints { make in
             make.width.equalTo(self.view).dividedBy(1.2)
             make.height.equalTo(60)
             make.centerX.equalTo(self.view.snp.centerX)
             make.bottom.equalTo(self.searchButton.snp.top).offset(-20)
         }
         
-        textField.backgroundColor = StyleKit.colorType(color: .welcomeTextFieldBackground)
-        textField.layer.cornerRadius = 5
-        textField.attributedPlaceholder = StyleKit.attributedText(text: welcomeScreenViewModel.textFieldPlaceholder,
+        nameTextField.backgroundColor = StyleKit.colorType(color: .welcomeTextFieldBackground)
+        nameTextField.layer.cornerRadius = 5
+        nameTextField.attributedPlaceholder = StyleKit.attributedText(text: welcomeScreenViewModel.textFieldPlaceholder,
                                                                   attribute: .welcomeTextFieldPlaceholder)
-        textField.defaultTextAttributes = StyleKit.convertToTypingAttributes(attribute: .welcomeTextFieldTyping)
-        textField.textAlignment = .center
+        nameTextField.defaultTextAttributes = StyleKit.convertToTypingAttributes(attribute: .welcomeTextFieldTyping)
+        nameTextField.textAlignment = .center
     }
     
     fileprivate func initSearchButton() {
@@ -102,9 +104,20 @@ class WelcomeScreenViewController: BaseViewController {
     // MARK: - User Interaction
     
     @objc func searchUserButtonClick(sender: UIButton!) {
-        welcomeScreenViewModel.userPosts(name: "przemex3000") { _ in
-            self.goToBlogScreen()
+        if let name = nameTextField.text, name != "" {
+            SwiftSpinner.show(welcomeScreenViewModel.searchSpinnerText)
+            welcomeScreenViewModel.userPosts(name: name) { result in
+                SwiftSpinner.hide()
+                if result.error == nil {
+                    self.goToBlogScreen()
+                }
+                self.handleApiError()
+            }
         }
+    }
+    
+    func handleApiError() {
+        
     }
     
     // MARK: - Additional Helpers

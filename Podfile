@@ -6,17 +6,15 @@ use_frameworks!
 # # Developer Helpers
 pod 'SwifterSwift'
 pod 'SnapKit', '~> 4.0.0'
-
-# # Logic
+pod 'IQKeyboardManagerSwift', '5.0.0'
+pod 'Kingfisher', '~> 4.0'
+pod 'SwiftSpinner'
 
 # # DB & Networking
 pod 'Moya-ObjectMapper'
 pod 'Moya'
 pod 'ObjectMapper'
-pod 'SwiftSpinner'
-pod 'IQKeyboardManagerSwift', '5.0.0'
-pod 'Kingfisher', '~> 4.0'
-pod 'TagListView', '~> 1.0'
+
 
 post_install do |installer|
 	swift40Targets = ['SwifterSwift']

@@ -42,6 +42,7 @@ class BlogScreenViewController: BaseViewController {
     func initUI() {
         initTableView()
         view.backgroundColor = StyleKit.colorType(color: .navyBlueBackground)
+        title = blogScreenViewModel.screenTitle
     }
     
     fileprivate func initTableView() {
@@ -77,7 +78,6 @@ extension BlogScreenViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let posts = blogScreenViewModel.userPostsResponse?.posts {
-            //TODO: Limit
             return posts.count
         }
         return 0
@@ -93,11 +93,13 @@ extension BlogScreenViewController: UITableViewDelegate, UITableViewDataSource {
         case .regular:
             if let cell = tableView.dequeueReusableCell(withIdentifier: blogScreenViewModel.textBlogCellIdentifier, for: indexPath) as? TextBlogCell {
                 cell.initCell(post: post)
+                cell.baseBlogCellDelegate = self
                 return cell
             }
         case .photo:
             if let cell = tableView.dequeueReusableCell(withIdentifier: blogScreenViewModel.photoBlogCellIdentifier, for: indexPath) as? PhotoBlogCell {
                 cell.initCell(post: post)
+                cell.baseBlogCellDelegate = self
                 return cell
             }
         }
@@ -106,3 +108,12 @@ extension BlogScreenViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+// MARK: - BaseBlogCellDelegate
+
+extension BlogScreenViewController: BaseBlogCellDelegate {
+    func webButtonClick(url: String?) {
+        if let urlString = url, let url = URL(string: urlString)  {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+}

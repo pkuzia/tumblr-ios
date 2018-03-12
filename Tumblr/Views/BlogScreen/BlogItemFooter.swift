@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol BlogItemFooterDelegate: class {
+    func webButtonClick(url: String?)
+}
+
 class BlogItemFooter: UIView {
 
     // MARK: - View Elements
@@ -16,6 +20,7 @@ class BlogItemFooter: UIView {
     lazy var tagListLabel = UILabel()
     lazy var webButton = UIButton()
 
+    var blogItemFooterDelegate: BlogItemFooterDelegate?
     var post: Post?
     
     // MARK: - Appearance
@@ -62,6 +67,7 @@ class BlogItemFooter: UIView {
         if let webImage = UIImage(named: "web") {
              webButton.setImageForAllStates(webImage)
         }
+        webButton.addTarget(self, action: #selector(webButtonClick), for: .touchUpInside)
     }
         
     func createTagsListLabel() -> String {
@@ -72,5 +78,11 @@ class BlogItemFooter: UIView {
             })
         }
         return tagString
+    }
+    
+    // MARK: - User Interaction
+    
+    @objc func webButtonClick(sender: UIButton!) {
+        blogItemFooterDelegate?.webButtonClick(url: post?.url)
     }
 }

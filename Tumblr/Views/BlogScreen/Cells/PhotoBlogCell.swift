@@ -42,8 +42,8 @@ class PhotoBlogCell: BaseBlogCell {
     
     fileprivate func initPostView() {
         initBlogItemHeaderView()
-        initPhotoTitle()
         initBlogPhoto()
+        initPhotoTitle()
         initBlogItemFooterView()
         
         addSubview(postView)
@@ -67,10 +67,26 @@ class PhotoBlogCell: BaseBlogCell {
         }
     }
     
+    fileprivate func initBlogPhoto() {
+        postView.addSubview(blogPhoto)
+        blogPhoto.snp.makeConstraints { make in
+            make.top.equalTo(blogItemHeader.snp.bottom)
+            make.left.equalTo(postView.snp.left)
+            make.right.equalTo(postView.snp.right)
+            make.height.equalTo(250)
+        }
+        blogPhoto.contentMode = .scaleAspectFit
+        if let photoUrl = post?.photoURL, let url = URL(string: photoUrl) {
+            blogPhoto.kf.indicatorType = .activity
+            blogPhoto.kf.setImage(with: url)
+            blogPhoto.clipsToBounds = true
+        }
+    }
+    
     fileprivate func initPhotoTitle() {
         postView.addSubview(photoTitle)
         photoTitle.snp.makeConstraints { make in
-            make.top.equalTo(blogItemHeader.snp.bottom).offset(20)
+            make.top.equalTo(blogPhoto.snp.bottom).offset(20)
             make.left.equalTo(postView.snp.left).offset(20)
             make.right.equalTo(postView.snp.right).offset(-20)
         }
@@ -79,33 +95,25 @@ class PhotoBlogCell: BaseBlogCell {
             photoTitle.setHTMLFromString(text: photoTitleText)
         }
     }
-        
-    fileprivate func initBlogPhoto() {
-        postView.addSubview(blogPhoto)
-        blogPhoto.snp.makeConstraints { make in
-            make.top.equalTo(photoTitle.snp.bottom)
-            make.left.equalTo(postView.snp.left)
-            make.right.equalTo(postView.snp.right)
-            make.height.equalTo(200)
-        }
-        blogPhoto.contentMode = .scaleAspectFill
-        if let photoUrl = post?.photoURL, let url = URL(string: photoUrl) {
-            blogPhoto.kf.indicatorType = .activity
-            blogPhoto.kf.setImage(with: url)
-            blogPhoto.clipsToBounds = true
-        }
-    }
     
     fileprivate func initBlogItemFooterView() {
+        blogItemFooter.blogItemFooterDelegate = self
         blogItemFooter.initBlogItemFooterView(post)
         postView.addSubview(blogItemFooter)
         blogItemFooter.snp.makeConstraints { make in
-            make.top.equalTo(blogPhoto.snp.bottom).offset(10)
+            make.top.equalTo(photoTitle.snp.bottom)
             make.left.equalTo(postView.snp.left)
             make.right.equalTo(postView.snp.right)
             make.bottom.equalTo(postView.snp.bottom)
             make.height.equalTo(60)
         }
     }
-    
+}
+
+// MARK: - BlogItemFooterDelegate
+
+extension PhotoBlogCell: BlogItemFooterDelegate {
+    func webButtonClick(url: String?) {
+        baseBlogCellDelegate?.webButtonClick(url: url)
+    }
 }

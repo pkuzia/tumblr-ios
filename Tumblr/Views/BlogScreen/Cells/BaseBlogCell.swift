@@ -8,9 +8,15 @@
 
 import UIKit
 
+protocol BaseBlogCellDelegate: class {
+    func webButtonClick(url: String?)
+}
+
 class BaseBlogCell: UITableViewCell {
 
-     // MARK: - View Lifecycle
+    weak var baseBlogCellDelegate: BaseBlogCellDelegate?
+    
+    // MARK: - View Lifecycle
     
     override func awakeFromNib() {
         super.awakeFromNib()

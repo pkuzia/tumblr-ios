@@ -80,6 +80,7 @@ class TextBlogCell: BaseBlogCell {
     }
     
     fileprivate func initBlogItemFooterView() {
+        blogItemFooter.blogItemFooterDelegate = self
         blogItemFooter.initBlogItemFooterView(post)
         postView.addSubview(blogItemFooter)
         blogItemFooter.snp.makeConstraints { make in
@@ -89,5 +90,13 @@ class TextBlogCell: BaseBlogCell {
             make.bottom.equalTo(postView.snp.bottom)
             make.height.equalTo(60)
         }
+    }
+}
+
+// MARK: - BlogItemFooterDelegate
+
+extension TextBlogCell: BlogItemFooterDelegate {
+    func webButtonClick(url: String?) {
+        baseBlogCellDelegate?.webButtonClick(url: url)
     }
 }

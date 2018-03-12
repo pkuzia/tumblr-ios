@@ -16,8 +16,11 @@ class MainNavigationViewController: UINavigationController {
     }
     
     fileprivate func initUI() {
-        self.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationBar.shadowImage = UIImage()
-        self.navigationBar.isTranslucent = true
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
+        navigationBar.isTranslucent = true
+        navigationBar.tintColor = StyleKit.colorType(color: .navBarTintColor)
+        navigationBar.titleTextAttributes = StyleKit.attributedText(attribute: .navBarTitle)
+        UIApplication.shared.statusBarStyle = .lightContent
     }
 }
