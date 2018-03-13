@@ -1,8 +1,8 @@
 //
 //  StyleKit.swift
-//  RIG
+//  Tumblr
 //
-//  Created by Przemysław Kuzia on 7/29/17
+//  Created by Przemysław Kuzia on 11.03.2018.
 //  Copyright © 2018 pkuzia. All rights reserved.
 //
 
@@ -25,6 +25,8 @@ public enum ApplicationFont {
 
 class StyleKit {
 
+    // MARK: - Attributes
+    
     static func attributedText(attribute: Attribute) -> [NSAttributedStringKey: Any] {
         var attributedDictionary = [NSAttributedStringKey: Any]()
         switch attribute {
@@ -63,6 +65,8 @@ class StyleKit {
         return NSAttributedString(string: text, attributes: attributedText(attribute: attribute))
     }
     
+    // MARK: - Colors
+    
     static func colorType(color: Color) -> UIColor {
         switch color {
         case .navyBlueBackground:
@@ -82,12 +86,16 @@ class StyleKit {
         }
     }
     
+    // MARK: - Fonts
+    
     static func applicationFont(fontType: ApplicationFont) -> UIFont {
         switch fontType {
         case .tagsViewFont:
             return UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.light)
         }
     }
+    
+    // MARK: - Helpers
     
     static func convertToTypingAttributes(attribute: Attribute) -> [String: Any] {
         let attr = attributedText(attribute: attribute)
