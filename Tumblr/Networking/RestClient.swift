@@ -42,7 +42,7 @@ extension TumblrRestClient: TargetType {
     public var baseURL: URL {
         switch self {
         case .userPostsRequest(let userPostsRequest):
-            return URL(string: "http://\(userPostsRequest.name).tumblr.com")!
+            return URL(string: "http://\(userPostsRequest.encodedName()).tumblr.com")!
         }
     }
     

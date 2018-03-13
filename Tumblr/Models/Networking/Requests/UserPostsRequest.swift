@@ -14,6 +14,13 @@ public class UserPostsRequest: BaseRequest {
         self.name = name
     }
 
+    public func encodedName() -> String {
+        if let nameEncoded = name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) {
+            return nameEncoded
+        }
+        return ""
+    }
+    
     public func getParameters() -> [String: Any] {
         var parameters: [String: Any] = [:]
         parameters["debug"] = 1
